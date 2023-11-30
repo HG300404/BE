@@ -9,6 +9,8 @@ const createGame = async (req, res) => {
       platform,
       rating,
       description,
+      discount,
+      selled,
       releasedDate,
     } = req.body;
 
@@ -18,7 +20,6 @@ const createGame = async (req, res) => {
       !type ||
       !price ||
       !platform ||
-      !rating ||
       !description
       //   !releasedDate
     ) {

@@ -11,7 +11,7 @@ const createUser = async (req, res) => {
       address,
       avatar,
     } = req.body;
-    console.log("req.body", req.body);
+
     const reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
     const isCheckEmail = reg.test(email);
     if (!userName || !email || !password || !confirmPassword) {
@@ -70,7 +70,7 @@ const loginUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const userId = req.params.id;
-    console.log("id", userId);
+
     const data = req.body;
     if (!userId) {
       return res.status(200).json({
@@ -123,7 +123,7 @@ const getDetailsUser = async (req, res) => {
   }
 };
 const refreshToken = async (req, res) => {
-  console.log("req.cookies.refresh_token", req.cookies.refresh_token);
+  // console.log("req.cookies.refresh_token", req.cookies.refresh_token);
   try {
     const token = req.cookies.refresh_token;
     if (!token) {

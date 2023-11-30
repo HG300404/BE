@@ -50,15 +50,16 @@ const loginUser = (userLogin) => {
           status: "ERR",
           message: "The user is not defined",
         });
+        console.log("The user is not defined");
       }
-      const hash = bcrypt.hashSync(password, 10);
-      // console.log(hash);
+
       const comparePassword = bcrypt.compareSync(password, checkUser.password);
       if (!comparePassword) {
         resolve({
           status: "ERR",
           message: "The password or user is incorrect",
         });
+        console.log("The password or user is incorrect");
       }
       const access_token = await generalAccessToken({
         id: checkUser.id,
@@ -138,7 +139,7 @@ const getDetailsUser = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       const user = await User.findOne({ _id: id });
-      console.log("user", user);
+      // console.log("user", user);
       if (user === null) {
         resolve({
           status: "OK",
