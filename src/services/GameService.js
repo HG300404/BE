@@ -10,6 +10,8 @@ const createGame = (newGame) => {
       platform,
       rating,
       description,
+      discount,
+      selled,
       releasedDate,
     } = newGame;
     try {
@@ -31,6 +33,8 @@ const createGame = (newGame) => {
         platform,
         rating,
         description,
+        discount,
+        selled,
         releasedDate,
       });
       if (createGame) {
@@ -130,7 +134,7 @@ const getAllGame = (limit, page, sort, filter) => {
       const allGame = await Game.find()
         .limit(limit)
         .skip(page * limit)
-        .sort({ name: sort });
+        .sort({ name: 1 });
       resolve({
         status: "OK",
         message: "SUCCESS",

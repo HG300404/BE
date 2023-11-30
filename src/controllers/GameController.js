@@ -69,7 +69,7 @@ const getAllGame = async (req, res) => {
   try {
     const { limit, page, sort, filter } = req.query;
     const response = await GameService.getAllGame(
-      Number(limit) || 8,
+      Number(limit) ,
       Number(page) || 0,
       sort,
       filter
