@@ -55,13 +55,15 @@ const updateGame = (id, data) => {
       const checkGame = await Game.findOne({ _id: id });
       if (checkGame === null) {
         resolve({
-          status: "OK",
+          status: "ERR",
           message: "The game is not defined",
         });
       }
+      console.log("dataOld", data);
       const updatedGame = await Game.findByIdAndUpdate(id, data, {
         new: true,
       });
+      console.log("updatedGame", updatedGame);
       resolve({
         status: "OK",
         message: "SUCCESS",
@@ -78,11 +80,24 @@ const deleteGame = (id) => {
       const checkGame = await Game.findOne({ _id: id });
       if (checkGame === null) {
         resolve({
-          status: "OK",
+          status: "ERR",
           message: "The game is not defined",
         });
       }
       await Game.findByIdAndDelete(id);
+      resolve({
+        status: "OK",
+        message: "Delete game success",
+      });
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+const deleteManyProduct = (ids) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      await Game.deleteMany({ _id: ids });
       resolve({
         status: "OK",
         message: "Delete game success",
@@ -172,6 +187,7 @@ module.exports = {
   createGame,
   updateGame,
   deleteGame,
+  deleteManyProduct,
   getAllGame,
   getDetailsGame,
 };

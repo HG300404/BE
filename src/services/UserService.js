@@ -121,6 +121,19 @@ const deleteUser = (id) => {
     }
   });
 };
+const deleteMany = (ids) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      await Game.deleteMany({ _id: ids });
+      resolve({
+        status: "OK",
+        message: "Delete user success",
+      });
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 const getAllUser = () => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -161,6 +174,7 @@ module.exports = {
   loginUser,
   updateUser,
   deleteUser,
+  deleteMany,
   getAllUser,
   getDetailsUser,
 };
