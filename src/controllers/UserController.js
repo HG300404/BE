@@ -151,7 +151,8 @@ const logoutUser = async (req, res) => {
 };
 const deleteMany = async (req, res) => {
   try {
-    const ids = req.body;
+    const ids = req.body.ids;
+    console.log("ids", ids);
     if (!ids) {
       return res.status(200).json({
         status: "ERR",

@@ -97,10 +97,11 @@ const deleteGame = (id) => {
 const deleteManyProduct = (ids) => {
   return new Promise(async (resolve, reject) => {
     try {
+      console.log("ids", "ids");
       await Game.deleteMany({ _id: ids });
       resolve({
         status: "OK",
-        message: "Delete game success",
+        message: "Delete many game success",
       });
     } catch (e) {
       reject(e);

@@ -99,7 +99,7 @@ const getDetailsGame = async (req, res) => {
 };
 const deleteManyProduct = async (req, res) => {
   try {
-    const ids = req.body;
+    const ids = req.body.ids;
     if (!ids) {
       return res.status(200).json({
         status: "ERR",

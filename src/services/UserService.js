@@ -124,10 +124,10 @@ const deleteUser = (id) => {
 const deleteMany = (ids) => {
   return new Promise(async (resolve, reject) => {
     try {
-      await Game.deleteMany({ _id: ids });
+      await User.deleteMany({ _id: ids });
       resolve({
         status: "OK",
-        message: "Delete user success",
+        message: "Delete many user success",
       });
     } catch (e) {
       reject(e);

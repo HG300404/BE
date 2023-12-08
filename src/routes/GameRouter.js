@@ -7,6 +7,6 @@ router.put("/update/:id", authMiddleware, gameController.updateGame);
 router.delete("/delete/:id", authMiddleware, gameController.deleteGame);
 router.get("/get-all", gameController.getAllGame);
 router.get("/details/:id", gameController.getDetailsGame);
-router.delete("/delete-many", authMiddleware, gameController.deleteManyProduct);
+router.post("/delete-many", authMiddleware, gameController.deleteManyProduct);
 
 module.exports = router;
