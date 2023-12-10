@@ -16,7 +16,7 @@ const createGame = async (req, res) => {
 
     if (
       !name ||
-      !image ||
+      // !image ||
       !type ||
       !price ||
       !platform ||
@@ -70,7 +70,9 @@ const getAllGame = async (req, res) => {
   try {
     const { limit, page, sort, filter } = req.query;
     const response = await GameService.getAllGame(
-      Number(limit) ,
+
+      Number(limit),
+
       Number(page) || 0,
       sort,
       filter
@@ -97,10 +99,26 @@ const getDetailsGame = async (req, res) => {
     return res.status(404).json({ message: e });
   }
 };
+const deleteManyProduct = async (req, res) => {
+  try {
+    const ids = req.body.ids;
+    if (!ids) {
+      return res.status(200).json({
+        status: "ERR",
+        message: "The ids is required",
+      });
+    }
+    const response = await GameService.deleteManyProduct(ids);
+    return res.status(200).json(response);
+  } catch (e) {
+    return res.status(404).json({ message: e });
+  }
+};
 module.exports = {
   createGame,
   updateGame,
   deleteGame,
   getAllGame,
   getDetailsGame,
+  deleteManyProduct,
 };
