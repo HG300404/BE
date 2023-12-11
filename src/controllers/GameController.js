@@ -112,11 +112,21 @@ const deleteManyProduct = async (req, res) => {
     return res.status(404).json({ message: e });
   }
 };
+const getAllType = async (req, res) => {
+  try {
+    const response = await GameService.getAllType();
+    return res.status(200).json(response);
+  } catch (e) {
+    return res.status(404).json({ message: e });
+  }
+};
+
 module.exports = {
   createGame,
   updateGame,
   deleteGame,
   getAllGame,
+  getAllType,
   getDetailsGame,
   deleteManyProduct,
 };

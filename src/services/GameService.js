@@ -164,6 +164,20 @@ const getAllGame = (limit, page, sort, filter) => {
     }
   });
 };
+const getAllType = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const allType = await Game.distinct("type");
+      resolve({
+        status: "OK",
+        message: "SUCCESS",
+        data: allType,
+      });
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 const getDetailsGame = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -190,5 +204,6 @@ module.exports = {
   deleteGame,
   deleteManyProduct,
   getAllGame,
+  getAllType,
   getDetailsGame,
 };
