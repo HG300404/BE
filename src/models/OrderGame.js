@@ -7,6 +7,8 @@ const orderSchema = new mongoose.Schema(
         name: { type: String, required: true },
         image: { type: String, required: true },
         price: { type: Number, required: true },
+        discount: { type: Number, required: true },
+        totalPrice: { type: Number, required: true },
         game: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "Game",

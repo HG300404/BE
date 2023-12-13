@@ -10,7 +10,7 @@ const gameSchema = new mongoose.Schema(
     platform: { type: String, require: true },
     releasedDate: { type: Date },
     description: { type: String, require: true },
-    discount: { type: Number },
+    discount: { type: Number, require: true },
     selled: { type: Number },
   },
   {
