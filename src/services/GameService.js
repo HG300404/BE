@@ -116,7 +116,7 @@ const getAllGame = (limit, page, sort, filter) => {
       if (filter) {
         const label = filter[0];
         const allGameFilter = await Game.find({
-          [label]: { $regex: filter[1] },
+          [label]: { $regex: filter[1], $options: "i" },
         })
           .limit(limit)
           .skip(page * limit);
