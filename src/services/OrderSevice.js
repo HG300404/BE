@@ -2,8 +2,15 @@ const Order = require("../models/OrderGame");
 
 const createOrder = (newOrder) => {
   return new Promise(async (resolve, reject) => {
-    const { orderItems, paymentMethod, totalPrice, user, isPaid, orderDate } =
-      newOrder;
+    const {
+      orderItems,
+      paymentMethod,
+      totalPrice,
+      user,
+      isPaid,
+      paidAt,
+      orderDate,
+    } = newOrder;
     console.log("newOrder", newOrder);
     try {
       const createOrder = await Order.create({
@@ -12,6 +19,7 @@ const createOrder = (newOrder) => {
         totalPrice,
         user,
         isPaid,
+        paidAt,
         orderDate,
       });
       if (createOrder) {
