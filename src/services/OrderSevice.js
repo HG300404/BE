@@ -1,4 +1,5 @@
 const Order = require("../models/OrderGame");
+const User = require("../models/UserModel");
 
 const createOrder = (newOrder) => {
   return new Promise(async (resolve, reject) => {
@@ -57,14 +58,29 @@ const getDetailsOrder = (id) => {
     }
   });
 };
-const getAllOrder = () => {
+const getAllOrder = (userId) => {
   return new Promise(async (resolve, reject) => {
     try {
       const allOrder = await Order.find();
+      const userPromises = allOrder.map(async (order) => {
+        if (order?.user) {
+          const user = await User.findOne({ _id: order?.user });
+          return {
+            ...order.toObject(), // Convert Mongoose document to plain JavaScript object
+            userName: user?.userName,
+            phone: user?.phone,
+            email: user?.email,
+          };
+        }
+        return order;
+      });
+
+      const ordersWithUserDetails = await Promise.all(userPromises);
+
       resolve({
         status: "OK",
         message: "SUCCESS",
-        data: allOrder,
+        data: ordersWithUserDetails,
       });
     } catch (e) {
       reject(e);
