@@ -27,6 +27,44 @@ const createOrder = (newOrder) => {
   });
 };
 
+const getDetailsOrder = (id) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const order = await Order.findOne({ user: id });
+      if (order === null) {
+        resolve({
+          status: "OK",
+          message: "The order is not defined",
+        });
+      }
+
+      resolve({
+        status: "OK",
+        message: "SUCCESS",
+        data: order,
+      });
+    } catch (e) {
+      console.log("e", e);
+      reject(e);
+    }
+  });
+};
+const getAllOrder = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const allOrder = await Order.find();
+      resolve({
+        status: "OK",
+        message: "SUCCESS",
+        data: allOrder,
+      });
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 module.exports = {
   createOrder,
+  getDetailsOrder,
+  getAllOrder,
 };
